@@ -44,24 +44,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 @Composable
-fun ChampionListItem(
-    image: String,
-    title: String,
-    description: String
-) {
-    val imageModifier = Modifier
-        .size(100.dp)
-        .padding(8.dp)
-        .clip(CircleShape)
+fun ChampionListItem(image: String, title: String, description: String) {
+    val imageModifier = Modifier.size(100.dp).padding(8.dp).clip(CircleShape)
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model= image,
-            contentDescription ="Champion image",
+            contentDescription ="",
             modifier= imageModifier,
-            contentScale= ContentScale.Crop
         )
         Column {
             Text(
@@ -96,7 +88,7 @@ val championList: List<Champion> = listOf(
 @Composable
 fun ChampionListItem1(modifier: Modifier) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
-        items(items = championList) {champion ->
+        items(championList) {champion ->
             ChampionListItem(
                 image = champion.image,
                 title = champion.title,
